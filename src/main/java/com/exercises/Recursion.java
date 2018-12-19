@@ -14,6 +14,19 @@ public class Recursion {
         }
         return result;
     }
+    public static int summation(int n){
+        //base case: we are at the end
+        if(n <= 0){
+            System.out.println("We're at the end");
+            return 0;
+        }
+        //recursive case: keep going
+        else{
+            System.out.println("keep going:" + n);
+            System.out.println( n + " summation("+ n +"-1)" + n + summation(n-1));
+            return n + summation(n - 1);
+        }
+    }
 
     public static int recursiveFactorial(int n){
         //base case: what you wouldn't have to compute; ex: 0! = 1
