@@ -34,5 +34,15 @@ public class NonEmptyBSTTest {
 
 	@Test
 	public void add() {
+		NonEmptyBST<Integer> tree = new NonEmptyBST<>(8);
+		tree = tree.add(7);
+		tree = tree.add(9);
+		tree = tree.add(11);
+		tree = tree.add(10);
+		tree = tree.add(6);
+		assertEquals(true, tree.contains(7));
+		assertEquals(true, tree.contains(10));
+
+
 	}
 }
