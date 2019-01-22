@@ -1,63 +1,53 @@
 package com.Sort;
 
 
+import java.util.Arrays;
 
 public class MergeSort {
 
-    public static void mergeSort(int[] array){
-        mergeSort(array,0, array.length - 1);
+    public static void sort(int[] arr){
+
+        mergeSort(arr, 0, arr.length - 1 );
     }
 
-    private static void merge(int[] array, int p, int q, int r){
-        int[] lowerHalf = new int[(q - p) + 1];
-        int[] higherHalf = new int[(q - p) + 1];
+    private static void mergeSort(int[] arr, int p, int r) {
+        if(p < r){
+            int q = (p + r) / 2;
+            Math.floor(q);
+            mergeSort(arr, p, q ); //bottom half
+            mergeSort(arr, q + 1, r); //top half
+            merge(arr, p , q, r);
+        }
+    }
 
+    private static void merge(int[] arr, int p, int q, int r) {
+        int[] lower = Arrays.copyOfRange(arr, p, q + 1); // q + 1 because copy of range is not inclusive
+        int[] upper = Arrays.copyOfRange(arr, q + 1, r + 1);
         int k = p;
-        int i;
-        int j;
+        int i = 0;
+        int j = 0;
 
-        for( i = 0; k <= q; i++,k++){
-            lowerHalf[i] = array[k];
-        }
-        for(j = 0; k <= r; j++,k++){
-            higherHalf[j] = array[k];
-        }
-
-        k = p;
-        i = 0;
-        j = 0;
-
-        while(i < lowerHalf.length && j < higherHalf.length){
-            if(lowerHalf[i] < higherHalf[j]){
-                array[k] = lowerHalf[i];
+        while(i < lower.length && j < upper.length){
+            if(lower[i] < upper[j]){
+                arr[k] = lower[i];
                 i++;
-                k++;
             } else {
-              array[k] = higherHalf[j];
+              arr[k] = upper[j];
               j++;
-              k++;
             }
+            k++;
         }
-        while(i < lowerHalf.length){
-            array[k] = lowerHalf[i];
+        while(i < lower.length ){
+            arr[k] = lower[i];
             i++;
             k++;
         }
-        while(j < higherHalf.length){
-            array[k] = higherHalf[j];
+        while(j < lower.length ){
+            arr[k] = upper[j];
             j++;
             k++;
         }
     }
 
-    private static void mergeSort(int[] array, int p, int r){
-        if(p < r){
-            int q = (p + r) / 2;
-            Math.floor(q);
-            mergeSort(array, p, q);
-            mergeSort(array, q + 1, r);
-            merge(array, p, q, r);
-        }
 
-    }
 }
