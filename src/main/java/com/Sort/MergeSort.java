@@ -1,6 +1,7 @@
 package com.Sort;
 
 
+import java.util.Arrays;
 
 public class MergeSort {
 
@@ -10,7 +11,7 @@ public class MergeSort {
 
     private static void merge(int[] array, int p, int q, int r){
         int[] lowerHalf = new int[(q - p) + 1];
-        int[] higherHalf = new int[(q - p) + 1];
+        int[] higherHalf = new int[r - q];
 
         int k = p;
         int i;
@@ -22,6 +23,9 @@ public class MergeSort {
         for(j = 0; k <= r; j++,k++){
             higherHalf[j] = array[k];
         }
+        System.out.println("merging higherHalf " + Arrays.toString(higherHalf));
+        System.out.println("into");
+        System.out.println("lowerHalf " + Arrays.toString(lowerHalf));
 
         k = p;
         i = 0;
@@ -52,6 +56,9 @@ public class MergeSort {
 
     private static void mergeSort(int[] array, int p, int r){
         if(p < r){
+            System.out.println();
+            System.out.println("Sorting indexes " + p + " -> " + r + " in arr: " + Arrays.toString(array));
+            System.out.println();
             int q = (p + r) / 2;
             Math.floor(q);
             mergeSort(array, p, q);
