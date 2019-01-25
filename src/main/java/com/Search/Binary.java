@@ -37,7 +37,7 @@ public class Binary {
             return false;
         }
         if(arr[mid] == num){
-            System.out.println("found number as prime");
+            System.out.println("found number");
             return true;
         }
 
@@ -52,6 +52,29 @@ public class Binary {
             return searchArray(arr, min, max, num);
         }
 
+        return false;
+    }
+
+    public static boolean iterativeBinarySearch(int[] arr, int num){
+        int min = 0;
+        int max = arr.length - 1;
+
+        while(min < max){
+            int guess = (min + max) / 2;
+            Math.floor(guess);
+            if(arr[guess] == num){
+                System.out.println("found it");
+                return true;
+            }
+            else if(arr[guess] > num){
+                System.out.println(arr[guess] + "  was higher than " + num + " so it must be in the lower half");
+                max = guess - 1;
+            }
+            else{
+                System.out.println(arr[guess] + "  was lower than " + num + " so it must be in the upper half");
+                min = guess + 1;
+            }
+        }
         return false;
     }
 }
