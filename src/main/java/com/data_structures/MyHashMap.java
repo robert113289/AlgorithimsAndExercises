@@ -18,6 +18,12 @@ public class MyHashMap<K,V> {
     private int size = 0;
     private ArrayList<HashNode<K,V>> bucketArray = new ArrayList<>(numBuckets);
 
+    public MyHashMap() {
+        for(int i = 0; i < numBuckets; i++){
+            bucketArray.add(null);
+        }
+    }
+
     public int size(){
         return this.size;
     }
@@ -70,8 +76,29 @@ public class MyHashMap<K,V> {
         return null;
     }
 
-
-
+    public V remove(K key){
+        int bucketIndex = getBucketIndex(key);
+        HashNode<K,V> head = bucketArray.get(bucketIndex);
+        HashNode<K,V> prev = null;
+        while(head != null){
+            if(head.key.equals(key)){
+                break;
+            }
+            prev = head;
+            head = head.next;
+        }
+        if(head == null){
+            //key was not there;
+            return null;
+        }
+        size--;
+        if(prev != null){
+            prev.next = head.next;
+        } else {
+            bucketArray.set(bucketIndex,head.next);
+        }
+        return head.value;
+    }
 
 
     private int getBucketIndex(K key){
