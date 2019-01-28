@@ -1,4 +1,4 @@
-package com.graph;
+package com.exercises.binarysearchtree;
 
 public interface BinarySearchTree<D extends Comparable> {
 	public boolean isEmpty();

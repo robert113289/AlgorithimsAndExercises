@@ -1,5 +1,6 @@
 package com.graph;
 
+import com.exercises.binarysearchtree.NonEmptyBST;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

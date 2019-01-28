@@ -1,4 +1,4 @@
-package com.graph;
+package com.exercises.binarysearchtree;
 
 
 

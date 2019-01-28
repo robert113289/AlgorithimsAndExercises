@@ -1,4 +1,4 @@
-package com.graph;
+package com.exercises.binarysearchtree;
 
 public class NonEmptyBST<D extends Comparable> implements BinarySearchTree<D>{
 	D data = null;
