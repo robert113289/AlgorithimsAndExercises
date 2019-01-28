@@ -1,6 +1,6 @@
 package com.graph;
 
-import sun.invoke.empty.Empty;
+
 
 public class EmptyBST<D extends Comparable> implements BinarySearchTree<D> {
 	D data = null;

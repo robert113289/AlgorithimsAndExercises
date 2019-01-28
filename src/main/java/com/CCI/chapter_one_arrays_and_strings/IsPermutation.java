@@ -1,6 +1,7 @@
-package com.CCI.ArraysAndStrings;
+package com.CCI.chapter_one_arrays_and_strings;
 
-public class CheckPermutation {
+public class IsPermutation {
+    //given 2 strings, write a method to decide if one is a permutation of the other.
     public static boolean isPermutation(String s, String t) {
         if (s.length() != t.length()) {
             return false;
@@ -17,4 +18,5 @@ public class CheckPermutation {
         }
         return true;
     }
+
 }

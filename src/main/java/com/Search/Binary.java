@@ -2,31 +2,44 @@ package com.Search;
 
 public class Binary {
 
-//    public static boolean searchArray(int[] arr, int num){
-//        int middleOfArr = 0;
-//        if(arr.length % 2 == 0){
-//            middleOfArr = arr[arr.length / 2];
-//        }
-//        if(num == middleOfArr){
-//            return true;
-//        }
-//        if(num < middleOfArr){
-//            return searchArray(Arrays.copyOfRange(arr,0, arr.length / 2), num);
-//        }
-//        if(num > middleOfArr){
-//            return searchArray(Arrays.copyOfRange(arr,arr.length / 2, arr.length - 1), num);
-//        }
-//        return false;
-//    }
-//
-//    public static boolean contains(int num){
-//        int[] arr = {1,2,3,4,5,6,7,8,9,10};
-//        return searchArray(arr, num);
-//    }
+
 
     public static boolean checkPrime(int num) {
         int[] primeNums = new int[]{2,3,5,7,11,13,17,19,23,19,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97};
         return searchArray(primeNums, 0, primeNums.length - 1, num );
+    }
+    public static boolean binarySearch(int[] arr, int x){
+        int m = arr.length / 2;
+        Math.floor(m);
+        int l = 0;
+        int r = arr.length - 1;
+        if(arr.length == 0){
+            return false;
+        }
+        return helperSearch(arr, x, l, r);
+    }
+
+    private static boolean helperSearch(int[] arr,int x, int l, int r ){
+        //base case
+        int m = (l + r) / 2;
+        Math.floor(m);
+        if(arr[m] == x){
+            return true;
+
+        }else if (l >= r){
+
+            return false;
+
+        }else if (x > arr[m]){ //the element at m is greater than x so x must in the top half of the arr
+
+            return helperSearch(arr, x, m + 1, r);
+
+        }else { // the element may be in the bottom half
+
+            return helperSearch(arr, x, l, m - 1);
+
+        }
+
     }
 
     public static boolean searchArray(int[] arr, int min, int max, int num) {
