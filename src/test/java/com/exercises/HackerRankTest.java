@@ -11,6 +11,13 @@ public class HackerRankTest {
 		assertEquals(7, HackerRank.repeatedString("aba", 10));
 		assertEquals(1000000000000L, HackerRank.repeatedString("a", 1000000000000L));
 	}
-	
-	
+
+	@Test
+	public void isBalanced() {
+		assertEquals("YES", HackerRank.isBalanced("{[()]}"));
+		assertEquals("NO", HackerRank.isBalanced("}][}}(]{))]"));
+		assertEquals("YES", HackerRank.isBalanced("[()][{}()][](){}([{}(())([[{}]])][])[]([][])(){}{{}{[](){}}}()[]({})[{}{{}([{}][])}]"));
+		assertEquals("NO", HackerRank.isBalanced("(])[{{{][)[)])(]){(}))[{(})][[{)(}){[(]})[[{}(])}({)(}[[()}{}}]{}{}}()}{({}](]{{[}}(([{]"));
+		assertEquals("NO", HackerRank.isBalanced("){[]()})}}]{}[}}})}{]{](]](()][{))])(}]}))(}[}{{)}{[[}[]}(]}){"));
+	}
 }
