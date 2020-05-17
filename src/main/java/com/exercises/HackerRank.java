@@ -1,5 +1,7 @@
 package com.exercises;
 
+import java.util.Collections;
+import java.util.PriorityQueue;
 import java.util.Stack;
 
 public class HackerRank {
@@ -73,5 +75,48 @@ public class HackerRank {
     private static boolean isOpening(Character c) {
         return c.equals('(') || c.equals('{') || c.equals('[');
     }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * @see <a href=https://www.hackerrank.com/challenges/find-the-running-median/problem>Hacker rank test: Running Median</a>
+     */
+    static double[] runningMedian(int[] a) {
+        int size = a[0];
+        double[] doubles = new double[size];
+        PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>();
+
+        doubles[0] = a[1];
+        minHeap.add(Math.min(a[1], a[2]));
+        maxHeap.add(Math.max(a[1], a[2]));
+        double median = ( (double) minHeap.peek() + maxHeap.peek()) / 2;
+        doubles[1] = median;
+        for(int i = 3; i < a.length; i++){
+            int num = a[i];
+            if(num < median){
+                minHeap.add(num);
+            } else{
+                maxHeap.add(num);
+            }
+
+            if(Math.max(minHeap.size(),maxHeap.size()) - Math.min(minHeap.size(),maxHeap.size()) > 1){
+                if(minHeap.size() < maxHeap.size()){
+                    minHeap.add(maxHeap.poll());
+                }else{
+                    maxHeap.add(minHeap.poll());
+                }
+            }
+            if(maxHeap.size() != minHeap.size()){
+                if(maxHeap.size() > minHeap.size()){
+                    median = maxHeap.peek();
+                }else{
+                    median = minHeap.peek();
+                }
+            } else {
+                median = ((double) minHeap.peek() + maxHeap.peek()) / 2;
+            }
+            doubles[i - 1] = median;
+        }
+        return doubles;
+    }
 }
