@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class HackerRankTest {
@@ -35,5 +36,19 @@ public class HackerRankTest {
         for(int i = 0; i < expectedResult.length; i++){
             assertEquals(expectedResult[i],actualResult[i],0.01d);
         }
+    }
+
+    @Test
+    public void testContacts() {
+        String[][] queries = new String[][]{
+                {"4",""}
+                ,{"add","hack"}
+                ,{"add","hackerrank"}
+                ,{"find","hac"}
+                ,{"find","hak"}
+        };
+        int[] expectedResults = new int[]{2,0};
+        int[] actualResults = HackerRank.contacts(queries);
+        assertArrayEquals(expectedResults, actualResults);
     }
 }

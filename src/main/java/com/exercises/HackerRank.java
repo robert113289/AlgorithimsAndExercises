@@ -1,8 +1,6 @@
 package com.exercises;
 
-import java.util.Collections;
-import java.util.PriorityQueue;
-import java.util.Stack;
+import java.util.*;
 
 public class HackerRank {
 
@@ -46,9 +44,9 @@ public class HackerRank {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-	/**
-	 * @see <a href=https://www.hackerrank.com/challenges/balanced-brackets/problem>Hacker rank test: Balanced Brackets</a>
-	 */
+    /**
+     * @see <a href=https://www.hackerrank.com/challenges/balanced-brackets/problem>Hacker rank test: Balanced Brackets</a>
+     */
     static String isBalanced(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
@@ -89,27 +87,27 @@ public class HackerRank {
         doubles[0] = a[1];
         minHeap.add(Math.min(a[1], a[2]));
         maxHeap.add(Math.max(a[1], a[2]));
-        double median = ( (double) minHeap.peek() + maxHeap.peek()) / 2;
+        double median = ((double) minHeap.peek() + maxHeap.peek()) / 2;
         doubles[1] = median;
-        for(int i = 3; i < a.length; i++){
+        for (int i = 3; i < a.length; i++) {
             int num = a[i];
-            if(num < median){
+            if (num < median) {
                 minHeap.add(num);
-            } else{
+            } else {
                 maxHeap.add(num);
             }
 
-            if(Math.max(minHeap.size(),maxHeap.size()) - Math.min(minHeap.size(),maxHeap.size()) > 1){
-                if(minHeap.size() < maxHeap.size()){
+            if (Math.max(minHeap.size(), maxHeap.size()) - Math.min(minHeap.size(), maxHeap.size()) > 1) {
+                if (minHeap.size() < maxHeap.size()) {
                     minHeap.add(maxHeap.poll());
-                }else{
+                } else {
                     maxHeap.add(minHeap.poll());
                 }
             }
-            if(maxHeap.size() != minHeap.size()){
-                if(maxHeap.size() > minHeap.size()){
+            if (maxHeap.size() != minHeap.size()) {
+                if (maxHeap.size() > minHeap.size()) {
                     median = maxHeap.peek();
-                }else{
+                } else {
                     median = minHeap.peek();
                 }
             } else {
@@ -118,5 +116,52 @@ public class HackerRank {
             doubles[i - 1] = median;
         }
         return doubles;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @see <a href=https://www.hackerrank.com/challenges/contacts/problem>Hacker rank test: Contacts</a>
+     */
+    static int[] contacts(String[][] queries) {
+        Trie trie = new Trie();
+        ArrayList<Integer> ans1 = new ArrayList<Integer>();
+        for(int i = 0; i < queries.length; i++){
+            if(queries[i][0].equalsIgnoreCase("add")) {
+              trie.putIfAbsent(queries[i][1]);
+            } else if(queries[i][0].equalsIgnoreCase("find")){
+                ans1.add(trie.searchForPrefix(queries[i][1]));
+            }
+        }
+
+        int[] ans = new int[ans1.size()];
+        for (int i = 0; i < ans1.size(); i++) {
+            ans[i] = ans1.get(i);
+        }
+        return ans;
+    }
+
+}
+
+class Trie {
+    private HashMap<Character, Trie> children = new HashMap<>();
+    boolean isWord = false;
+    int size = 0;
+    public void putIfAbsent(String s) {
+        Trie curr = this;
+        for(char c : s.toCharArray()){
+            curr.children.putIfAbsent(c, new Trie());
+            curr = curr.children.get(c);
+            curr.size++;
+        }
+        curr.isWord = true;
+    }
+
+    public int searchForPrefix(String prefix) {
+        Trie curr = this;
+        for(char c : prefix.toCharArray()){
+            curr = curr.children.get(c);
+            if(curr == null) return 0;
+        }
+        return curr.size;
     }
 }
