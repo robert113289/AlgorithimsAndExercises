@@ -1,4 +1,4 @@
-package com.exercises.Leetcode.Matrix;
+package com.exercises.leetcode.matrix;
 
 import org.junit.Test;
 
